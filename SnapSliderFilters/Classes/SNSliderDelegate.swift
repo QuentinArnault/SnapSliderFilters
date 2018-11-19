@@ -9,4 +9,5 @@ import Foundation
 
 public protocol SNSliderDelegate : class {
     func slider(_ slider: SNSlider, didSlideAtIndex index: Int)
+    func slider(_ slider: SNSlider, didScrollWithOffset offset: CGFloat)
 }

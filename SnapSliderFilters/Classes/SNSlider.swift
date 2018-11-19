@@ -126,13 +126,19 @@ extension SNSlider: UIScrollViewDelegate {
     
     public func scrollViewDidScroll(_ scrollView: UIScrollView) {
         
-        for i in 0..<data.count {
-            switch slideAxis {
-            case .horizontal:
+        switch slideAxis {
+        case .horizontal:
+            for i in 0..<data.count {
                 data[i].updateMask(data[i].frame, newXPosition: slideAxis.positionOfPage(at: i - 1, in: self) - scrollView.contentOffset.x)
-            case .vertical:
+            }
+            delegate?.slider(self,
+                             didScrollWithOffset: scrollView.contentOffset.x)
+        case .vertical:
+            for i in 0..<data.count {
                 data[i].updateMask(data[i].frame, newYPosition: slideAxis.positionOfPage(at: i - 1, in: self) - scrollView.contentOffset.y)
             }
+            delegate?.slider(self,
+                             didScrollWithOffset: scrollView.contentOffset.y)
         }
     }
     
